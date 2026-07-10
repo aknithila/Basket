@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basket Catch - Catch the Fruit!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="game-container">
+        <!-- Canvas Game Loop -->
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+        <!-- HUD Shell (Overlaying the Canvas) -->
+        <div id="hud" class="hud-layer hidden">
+            <div class="hud-item lives-container">
+                <span class="hud-label">LIVES</span>
+                <div id="hearts-box">
+                    <span class="heart active">❤️</span>
+                    <span class="heart active">❤️</span>
+                    <span class="heart active">❤️</span>
+                </div>
+            </div>
+
+            <div class="hud-item info-container">
+                <div id="level-badge" class="badge">Level 1</div>
+                <div id="multiplier-badge" class="badge hidden">50% SLOW</div>
+            </div>
+
+            <div class="hud-item score-container">
+                <div>
+                    <span class="hud-label">HIGH SCORE</span>
+                    <div id="hud-highscore" class="hud-value secondary">0</div>
+                </div>
+                <div>
+                    <span class="hud-label">SCORE</span>
+                    <div id="hud-score" class="hud-value primary">0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popups & Toasts -->
+        <div id="toast-container"></div>
+
+        <!-- Frost / Ice Overlay Effect -->
+        <div id="frost-overlay" class="hidden"></div>
+
+        <!-- Lightning / Speed Glow Effect Wrap -->
+        <div id="screen-flash" class="hidden"></div>
+
+        <!-- Start Screen Screen -->
+        <div id="start-screen" class="overlay-layer">
+            <div class="menu-card glass">
+                <h1 class="game-title">BASKET <span class="accent">CATCH</span></h1>
+                <p class="tagline">Catch falling items, avoid the bombs!</p>
+
+                <div class="section">
+                    <h3>SELECT DIFFICULTY</h3>
+                    <div class="difficulty-toggle">
+                        <button class="diff-btn" data-diff="easy">EASY</button>
+                        <button class="diff-btn active" data-diff="medium">MEDIUM</button>
+                        <button class="diff-btn" data-diff="hard">HARD</button>
+                    </div>
+                </div>
+
+                <div class="section controls-legend">
+                    <h3>CONTROLS</h3>
+                    <div class="control-row">
+                        <kbd>←</kbd> <kbd>→</kbd> or <kbd>A</kbd> <kbd>D</kbd>
+                        <span>Move Basket</span>
+                    </div>
+                    <div class="control-row">
+                        <kbd>P</kbd>
+                        <span>Pause / Resume</span>
+                    </div>
+                    <div class="control-row">
+                        <kbd>R</kbd>
+                        <span>Restart Game</span>
+                    </div>
+                    <div class="control-row">
+                        <kbd>Esc</kbd>
+                        <span>Return to Title Screen</span>
+                    </div>
+                </div>
+
+                <button id="start-btn" class="interactive-btn primary-btn">PLAY GAME</button>
+                <div class="highscore-footer">
+                    CURRENT HIGH SCORE: <span id="menu-highscore">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paused Screen -->
+        <div id="pause-screen" class="overlay-layer hidden">
+            <div class="menu-card glass mini">
+                <h2 class="sub-title">PAUSED</h2>
+                <div class="spacer-button">
+                    <button id="resume-btn" class="interactive-btn primary-btn">RESUME</button>
+                    <button id="pause-restart-btn" class="interactive-btn secondary-btn">RESTART (R)</button>
+                    <button id="pause-menu-btn" class="interactive-btn text-btn">QUIT TO MENU (ESC)</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over-screen" class="overlay-layer hidden">
+            <div class="menu-card glass">
+                <h1 class="title-gameover">GAME OVER</h1>
+
+                <div class="score-summary">
+                    <div class="score-block">
+                        <span class="sub-label">FINAL SCORE</span>
+                        <div id="final-score" class="big-score">0</div>
+                    </div>
+
+                    <div id="new-highscore-badge" class="badge-new-record hidden">
+                        🎉 NEW HIGH SCORE! 🎉
+                    </div>
+                </div>
+
+                <div class="spacer-button">
+                    <button id="restart-btn" class="interactive-btn primary-btn">PLAY AGAIN</button>
+                    <button id="gameover-menu-btn" class="interactive-btn secondary-btn">MAIN MENU</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
